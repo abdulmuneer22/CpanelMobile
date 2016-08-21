@@ -1,4 +1,7 @@
 import React,{addons} from 'react';
+/**************import Components */
+import Cataloge from './Cataloge.jsx';
+
 
 /****  material ui elements */
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -116,7 +119,10 @@ class App extends React.Component {
 
           <RaisedButton label="Submit" primary={true}  />
           </MuiThemeProvider>
-
+          
+          
+          <Cataloge title="Cataloge"/>
+          
           </div>
 
 
@@ -127,6 +133,7 @@ class App extends React.Component {
 
 
             <div style={RightWrapper}>Simulator Preview Goes Here --</div>
+            
             
           </div>
         
