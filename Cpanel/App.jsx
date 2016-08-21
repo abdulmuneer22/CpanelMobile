@@ -121,7 +121,7 @@ class App extends React.Component {
           </MuiThemeProvider>
           
           
-          <Cataloge title="Cataloge"/>
+          <Cataloge title="Catalogue"/>
           
           </div>
 

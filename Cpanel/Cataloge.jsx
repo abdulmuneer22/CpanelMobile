@@ -15,37 +15,29 @@ import MenuItem from 'material-ui/MenuItem';
 class Cataloge extends React.Component {
    constructor() {
     super();
-    this.state = {value: 1};
+    this.state = {
+        categoryIndex: 0,
+        productIndex : 0
+    };
   }
   
    //handleChange = (event, index, value) => this.setState({value});
    handleChange(event, index, value) { 
-       this.setState({value});
+       this.setState({categoryIndex : index});
     }
 
-    _showProduct(){
-        var index = this.state.value 
-        alert("Test")
-        switch(index){
-            case '1':
-                return <div>Show Water Cans</div>
-            case 'Laundry':
-                return <div>Laundry</div>
-        }
-    }
-
-    showProduct(index){
-        //alert(index)
+    
+    
+    categorySelector(index){
         switch(index){
             case 1:
-                return (<div></div>)
-            case 2:
                 return (
-                    <div>
+                <div>
+                <div>
                     <MuiThemeProvider>
                     <SelectField 
-                    value={0} 
-                    //onChange={this.handleChange.bind(this)}
+                    value={this.state.productIndex} 
+                    onChange={this.showProduct.bind(this)}
                     >
                     <MenuItem value={0} primaryText="Select A Product .." />
                     <MenuItem value={1} primaryText="SKU-1" />
@@ -53,14 +45,27 @@ class Cataloge extends React.Component {
                     </SelectField>
                     </MuiThemeProvider>
 
-                    </div>)
-            case 3:
+                </div>
+                <div>products</div>
+                </div>
+                )
+            case 2:
                 return (<div>Show Laundry</div>)
-                
-        }
+            
+    }
+}
+    
+  showProduct(event, index, value) { 
+      //alert(value)
+      this.setState({productIndex : index});
+      
     }
 
-
+displayProdDetails(){
+    return(
+        <div>Product Details</div>
+    )
+}
 
 getProducts(){
 
@@ -93,7 +98,32 @@ CanRef.on('value',(can)=>{
       return (
          <div>
          <h2>{this.props.title}</h2>
-         </div>)}
+
+        <div>
+                <MuiThemeProvider>
+                <SelectField 
+                value={this.state.categoryIndex} 
+                onChange={this.handleChange.bind(this)}
+                >
+                <MenuItem value={0} primaryText="Select A Category  .." />
+                <MenuItem value={1} primaryText="Water Can" />
+                <MenuItem value={2} primaryText="Laundry" />
+                </SelectField>
+                </MuiThemeProvider>
+
+        </div>
+
+        <div>
+        {
+            // Show option to select products from Selected cat
+            this.categorySelector(this.state.categoryIndex)
+        }
+        </div>
+        
+         </div>)
+        
+    
+}
 
 }
 
